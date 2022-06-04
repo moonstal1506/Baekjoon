@@ -1,5 +1,5 @@
 class Solution {
-    public int solution(long num) {
+   public int solution(long num) {
         int answer = 0;
         while(num!=1) {
         	if(num%2==0) {
@@ -9,8 +9,7 @@ class Solution {
         	}
         	answer++;
         	if(answer==500) {
-        		answer= -1;
-                break;
+        		return -1;
         	}
         }
         return answer;
