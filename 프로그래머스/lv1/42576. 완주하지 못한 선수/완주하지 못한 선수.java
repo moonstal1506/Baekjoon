@@ -1,21 +1,21 @@
-import java.util.HashMap;
+import java.util.Arrays;
 
 class Solution {
     public String solution(String[] participant, String[] completion) {
-        String answer = "";
-        HashMap<String, Integer> map = new HashMap<>();
-        for(String name:participant) {
-        	map.put(name, map.getOrDefault(name,0 )+1);
-        }
-        for(String name:completion) {
-        	map.put(name, map.get(name)-1);
-        }
-        for(String name:map.keySet()) {
-        	if(map.get(name)!=0) {
-        		answer+=name;
+        
+        //정렬
+        Arrays.sort(participant);
+        Arrays.sort(completion);
+       
+        //반복돌려 같은지 확인 다를때 답
+        int i=0;
+        for(;i<completion.length;i++) {
+        	if(!participant[i].equals(completion[i])) {
+        		return participant[i];
         	}
         }
         
-        return answer;
+        //반복 끝 마지막남은사람이 답
+        return participant[i];
     }
 }
