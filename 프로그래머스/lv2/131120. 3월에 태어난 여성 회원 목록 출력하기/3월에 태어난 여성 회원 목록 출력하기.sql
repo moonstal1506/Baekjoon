@@ -1,0 +1,5 @@
+-- 코드를 입력하세요
+SELECT MEMBER_ID, MEMBER_NAME, GENDER, TO_CHAR(DATE_OF_BIRTH, 'yyyy-mm-dd') AS DATE_OF_BIRTH
+from MEMBER_PROFILE
+where TLNO is not null and GENDER='W' and TO_CHAR(DATE_OF_BIRTH, 'mm')=3
+order by MEMBER_ID;
