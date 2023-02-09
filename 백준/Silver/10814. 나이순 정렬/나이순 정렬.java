@@ -1,45 +1,27 @@
+import java.io.*;
 import java.util.*;
 
-
-public class Main {
-
-    static int[] arr;
-    static boolean[] check;
-    static int n;
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        List<Person> list = new ArrayList<>();
-
-        for (int i = 0; i < n; i++) {
-            int age = sc.nextInt();
-            String name = sc.next();
-            list.add(new Person(age, name));
-        }
-        Collections.sort(list);
-        for (Person p : list) {
-            System.out.println(p);
-        }
-    }
+class Main {
+	
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int N = Integer.parseInt(br.readLine());
+		String[] members = new String[N];
+		for (int i = 0; i < N; i++) {
+			members[i] = br.readLine();
+		}
+		StringBuilder sb = new StringBuilder();
+		Arrays.stream(members).sorted((o1, o2) -> {
+			return Integer.parseInt(o1.split(" ")[0]) - Integer.parseInt(o2.split(" ")[0]);
+		}).forEach(s -> {
+			sb.append(s);
+			sb.append("\n");
+		});
+		System.out.println(sb.toString());
+	}
 }
 
-class Person implements Comparable<Person> {
-    int age;
-    String name;
-
-    public Person(int age, String name) {
-        this.age = age;
-        this.name = name;
-    }
-
-    @Override
-    public int compareTo(Person o) {
-        return age - o.age;
-    }
-
-    @Override
-    public String toString() {
-        return age + " " + name;
-    }
-}
+/**
+  * 10814. 나이순 정렬
+**/
