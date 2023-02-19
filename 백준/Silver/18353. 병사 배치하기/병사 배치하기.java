@@ -3,18 +3,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+// 최대 부분 증가 수열 이용
 public class Main {
     static int N;
     static int[] power;
+    static int[] count; //앞에 올 수 있는 병사의 개수를 저장하는 배열
 
     public static void main(String[] args) throws IOException {
         //입력
         input();
-
-        //앞에 올수 있는 병사의 개수를 저장하는 배열
-        int[] count = new int[N];
+        count = new int[N];
         int total = 0;
-        
+
         //나보다 크면서 병사개수의 최대값을 갖고있는 배열 값에 + 1
         for (int i = 0; i < N; i++) {
             int max = 0;
