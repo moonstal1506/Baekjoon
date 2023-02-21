@@ -34,7 +34,7 @@ public class Main {
 		}
 
 		for (int i = 0; i < R; i++) {
-			flag=false;
+			flag = false;
 			map[i][0] = 'o';
 			dfs(i, 0, 1);
 		}
@@ -44,12 +44,12 @@ public class Main {
 
 	private static void dfs(int x, int y, int cnt) {
 
-		if (cnt+1 == C) {
+		if (cnt == C) {
 			answer++;
-			flag=true;
+			flag = true;
 			return;
 		}
-		
+
 		for (int i = 0; i < 3; i++) {
 			int nx = x + dx[i];
 			int ny = y + dy[i];
@@ -57,14 +57,14 @@ public class Main {
 			if (0 > nx || 0 > ny || R <= nx || C <= ny) {
 				continue;
 			}
-				
+
 			if (map[nx][ny] == 'x' || map[nx][ny] == 'o') {
 				continue;
 			}
-			
+
 			map[nx][ny] = 'o';
 			dfs(nx, ny, cnt + 1);
-			if(flag) {
+			if (flag) {
 				return;
 			}
 		}
