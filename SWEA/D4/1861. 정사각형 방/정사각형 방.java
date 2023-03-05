@@ -1,7 +1,5 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Solution {
@@ -31,7 +29,7 @@ public class Solution {
 
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < N; j++) {
-                    bfs(i, j);
+                    dfs(map[i][j], i, j, 1);
 
                 }
             }
@@ -40,39 +38,27 @@ public class Solution {
         }
     }
 
-    private static void bfs(int x, int y) {
-        Queue<Integer> Q = new LinkedList<>();
-        Q.add(x);
-        Q.add(y);
-        int cnt = 1;
-        while (!Q.isEmpty()) {
-            int cx = Q.poll();
-            int cy = Q.poll();
+    private static void dfs(int start, int x, int y, int distance) {
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
 
-            for (int i = 0; i < 4; i++) {
-                int nx = cx + dx[i];
-                int ny = cy + dy[i];
-
-                if (nx < 0 || ny < 0 || nx >= N || ny >= N) {
-                    continue;
-                }
-
-                if (map[nx][ny] == map[cx][cy] + 1) {
-                    Q.add(nx);
-                    Q.add(ny);
-                    cnt++;
-                }
+            if (nx < 0 || ny < 0 || nx >= N || ny >= N) {
+                continue;
             }
-        }
 
-        if (maxDistance < cnt) {
-            maxDistance = cnt;
-            roomNum = map[x][y];
-        }
+            if (map[nx][ny] != map[x][y] + 1) {
+                if (maxDistance < distance) {
+                    maxDistance = distance;
+                    roomNum = start;
+                }
 
-        if (maxDistance == cnt) {
-            roomNum = Math.min(roomNum, map[x][y]);
+                if (maxDistance == distance) {
+                    roomNum = Math.min(roomNum, start);
+                }
+                continue;
+            }
+            dfs(start, nx, ny, distance + 1);
         }
     }
-
 }
